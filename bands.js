@@ -1,3 +1,5 @@
+'use strict'
+
 /**
  * Associate the value with the key in band
  * @param {object} band 
@@ -45,7 +47,7 @@ const combineStrings = (ar) => {
  * Pluck the keys you want out of the record
  * @param {array} keys Array of keys to extract
  */
-const pluck = (keys) => pluckFn = (record) => keys.map(key => `${record[key]}`)
+const pluck = (keys) => (record) => keys.map(key => `${record[key]}`)
 
 /**
  * Run the functions in the array against each band
@@ -53,15 +55,16 @@ const pluck = (keys) => pluckFn = (record) => keys.map(key => `${record[key]}`)
  * @param {array} fcns Array of functions
  */
 const pipeEach = (bands, fcns) => bands.map((band) => {
-    fcns.forEach(fcn => band = fcn(band));//apply each function to the band object
-    return band;
-  })
+  fcns.forEach(fcn => band = fcn(band));//apply each function to the band object
+  return band;
+})
 
-
+//the bands
 let bands = [{ 'name': 'sunset rubdown', 'country': 'UK', 'active': false },
 { 'name': 'women', 'country': 'Germany', 'active': false },
 { 'name': 'a. silver. mt. zion', 'country': 'Spain', 'active': true }]
 
+//make new bands array
 let newBands = pipeEach(bands, [
   setCanadaAsCountry,
   stripPuncFromBand,
