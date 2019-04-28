@@ -45,7 +45,11 @@ const runStepOfRace = (state) => {
 const drawState = (state) => {
   state.msgs.push(state.carPositions.map(outputCarPosition))
 }
-
+const runTheRace = (state) =>{
+  let raceState = {...state, msgs:[]}
+  race(raceState)
+  return raceState
+}
 /**
  * Start the race
  * @param {object} state 
@@ -94,10 +98,10 @@ const printResults = (state) => {
 
 //Run a race
 let raceState = {
-  time: 5,
+  time: 20,
   carPositions: [1, 1, 1],
   msgs: [],
 }
 
-race(raceState)
-printResults(raceState)
+let finish = runTheRace(raceState)
+printResults(finish)
