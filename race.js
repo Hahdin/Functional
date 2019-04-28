@@ -97,11 +97,11 @@ const printResults = (state) => {
 }
 
 //Run a race
-let raceState = {
-  time: 20,
-  carPositions: [1, 1, 1],
-  msgs: [],
-}
-
-let finish = runTheRace(raceState)
-printResults(finish)
+printResults(
+  runTheRace(
+  {
+    time: 20,
+    carPositions: [1, 1, 1],
+    msgs: [],
+  })
+)
